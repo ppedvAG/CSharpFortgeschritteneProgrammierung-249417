@@ -89,8 +89,12 @@ public partial class MainWindow : Window
 		ReqButton.IsEnabled = true;
 	}
 
-	private void Button_Click_AsyncDataSource(object sender, RoutedEventArgs e)
+	private async void Button_Click_AsyncDataSource(object sender, RoutedEventArgs e)
 	{
-
+		AsyncDataSource ads = new();
+		await foreach(int x in ads.GeneriereZahlen()) //await foreach: Warte auf das nächste Element
+		{
+			Output.Text += $"{x}\n";
+		}
 	}
 }

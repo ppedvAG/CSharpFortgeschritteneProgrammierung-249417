@@ -1,0 +1,30 @@
+﻿<Window x:Class="PluginClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:reflection="clr-namespace:System.Reflection;assembly=System.Reflection.Extensions"
+        xmlns:local="clr-namespace:PluginClient"
+		DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        Title="MainWindow" Height="450" Width="300"
+		WindowStartupLocation="CenterScreen"
+		Topmost="True"
+		FontSize="16">
+    <StackPanel Margin="5">
+		<Button Click="LoadPlugin" Content="Plugin laden"/>
+		
+		<TextBlock Name="TB_Name"/>
+		<TextBlock Name="TB_Desc"/>
+		<TextBlock Name="TB_Version"/>
+		<TextBlock Name="TB_Author"/>
+		
+		<ItemsControl ItemsSource="{Binding Methods}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate DataType="reflection:MethodInfo">
+					<StackPanel Orientation="Horizontal">
+						<TextBlock Text="{Binding Name}" Margin="0, 0, 5, 0"/>
+						<Button Click="ExecuteMethod" Content="Methode ausführen"/>
+					</StackPanel>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+	</StackPanel>
+</Window>
